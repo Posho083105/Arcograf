@@ -1,0 +1,13 @@
+class Producto:
+    """ Clase que implemta producto"""
+    def __init__(self,material,tamaño,precio,IGV) -> None:
+        self.material=material
+        self.tamaño=tamaño
+        self.precio=precio
+        self.IGV=IGV
+        pass
+    def convertir_a_texto(self):
+        return "|{}|{}|{}|".format(self.material,
+                                   self.tamaño,
+                                   self.precio,
+                                   self.IGV)
