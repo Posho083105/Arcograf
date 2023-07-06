@@ -1,0 +1,13 @@
+class Cliente:
+    """ Clase que impleta cliente"""
+    def __init__(self,cotisacion_de_letrero,nombre,direccion,telefono) -> None:
+        self.cotisacion_de_letrero = cotisacion_de_letrero
+        self.nombre= nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        pass
+    def convertir_a_texto(self):
+        return "|{}|{}|{}|{}|".format(self.cotisacion_de_letrero,
+                                      self.nombre,
+                                      self.direccion,
+                                      self.telefono)
