@@ -1,0 +1,6 @@
+#Calcular el IGV de un importe
+class IGV:
+    monto=float(input("Ingrese el monto del producto: "))
+    porcentaje_igv = 18
+    igv = monto * porcentaje_igv / 100
+    print("El IGV del producto es: ", igv)
