@@ -1,0 +1,124 @@
+from cliente import Cliente
+from producto import Producto
+# CRUD CLIENTE
+data_clientes:list=[{"cotisacion_de_letrero":"10472596972",
+                     "nombre":"juancito lucro",
+                     "direccion":"Jr. san martin",
+                     "telefono":"997120432"},
+                     {"cotisacion_de_letrero":"47259697",
+                     "nombre":"Noe david",
+                     "direccion":"Jr. SOL",
+                     "telefono":"997120432"},
+                     {"cotisacion_de_letrero":"4561237895",
+                     "nombre":"JUan Carlos tumpi",
+                     "direccion":"UPeU",
+                     "telefono":"123456789"}]
+
+clientes:Cliente = []
+def cargar_datos_clientes():
+    for data in data_clientes:
+        clientes.append(Cliente(data["cotisacion_de_letrero"],
+                                data["nombre"],
+                                data["direccion"],
+                                data["telefono"]))
+    return clientes
+
+def insertar_cliente():
+    cotisacion_de_letrero:str=input("Ingrese la cotisacion de letrero del cliente: ")
+    nombre:str=input("Ingrese su nombre del cliente: ")
+    direccion:str=input("Ingrese la direccion del cliente: ")
+    telefono:str=input("Ingrese telefono del cliente: ")
+    clientes.append(Cliente(cotisacion_de_letrero,nombre,direccion,telefono))
+    return clientes
+
+def listar_clientes():
+    for cliente in clientes:
+        print(cliente.convertir_a_texto())
+    return clientes
+
+def buscar_cliente():
+    cotisacion_de_letrero:str=input("Ingrese la cotisacion de letrero para buscar cliente: ")
+    for cliente in clientes:
+        if cliente.cotisacion_de_letrero==cotisacion_de_letrero:
+            print(cliente.convertir_a_texto())
+            return cliente
+
+def editar_cliente():
+    listar_clientes()
+    cotisacion_de_letrero:str=input("Ingrese el cotisacion de letrero para editar cliente: ")
+    for cliente in clientes:
+        if cliente.cotisacion_de_letrero==cotisacion_de_letrero:
+            print(cliente.convertir_a_texto())
+            cliente.nombre=input("Ingrese nombre del cliente: ")
+            cliente.direccion=input("Ingrese nueva direcion del cliente: ")
+            cliente.telefono=input("Ingrese nuevo telefono del cliente: ")
+    listar_clientes()
+    return clientes
+
+def eliminar_cliente():
+    listar_clientes()
+    cotisacion_de_letrero:str=input("Ingrese el cotisacion de letrero del cliente para eliminar: ")
+    for indice, cliente in enumerate(clientes):
+        if cliente.cotisacion_de_letrero==cotisacion_de_letrero:
+            clientes.pop(indice)
+    listar_clientes()
+    return clientes
+
+# CRUD PRODUCTO
+
+data_productos:list=[{"codigo":"001",
+                     "nombre":"baner",
+                     "precio":200.00},
+                     {"codigo":"002",
+                     "nombre":"lona",
+                     "precio":150.50},
+                     {"codigo":"003",
+                     "nombre":"PBS",
+                     "precio":180.00}]
+
+productos:Producto = []
+def cargar_datos_productos():
+    for data in data_productos:
+        productos.append(Producto(data["codigo"],
+                                data["nombre"],
+                                data["precio"]))
+    return productos
+
+def menu_texto():
+    print("===============MENU===========")
+    print("1: para Insertar Cliente")
+    print("2: para listar Cliente")
+    print("3: para Buscar Cliente")
+    print("4: para Editar Cliente")
+    print("5: para Elimiar Cliente")
+
+    print("30: para terminar")
+
+def menu():
+    continuar:bool=True
+    while continuar:
+        menu_texto()
+        opcion:str=input("Ingrese la opcion: ")
+        match opcion:
+            case "1":
+                insertar_cliente()
+            case "2":
+                listar_clientes()
+            case "3":
+                buscar_cliente() 
+            case "4":
+                editar_cliente()   
+            case "5":
+                eliminar_cliente() 
+            case "30":
+                continuar=False    
+
+
+def main():
+    cargar_datos_clientes()
+    cargar_datos_productos()
+    menu()
+    print("iniciando programna")
+    return True
+if __name__=='__main__':
+    main()
